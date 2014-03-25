@@ -7,4 +7,5 @@ describe Ocr do
     ocr = Ocr.new
     expect(ocr.scan_for_account_numbers("accounts.txt")).to eq account_numbers
   end
+
 end
