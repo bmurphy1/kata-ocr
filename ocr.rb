@@ -1,0 +1,3 @@
+
+class Ocr
+end
