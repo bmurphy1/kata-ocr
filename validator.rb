@@ -17,8 +17,8 @@
 #     false otherwise
 
 class Validator
-  def validate_account_number(acc_num)
-    acc_array = split_account_number(acc_num)
+  def self.validate_account_number(acc_num)
+    acc_array = self.split_account_number(acc_num)
     acc_array.reverse!
     acc_array.map!.with_index {|d, i| d * (i+1)}
     acc_array.reduce(:+) % 11 == 0
@@ -26,7 +26,7 @@ class Validator
 
   private
 
-  def split_account_number(acc_num)
+  def self.split_account_number(acc_num)
     acc_num.to_s.split("").map {|d| d.to_i}
   end
 

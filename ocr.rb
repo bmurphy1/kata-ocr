@@ -17,22 +17,22 @@
 
 
 class Ocr
-  def scan_for_account_numbers(file)
+  def self.scan_for_account_numbers(file)
     # grid is 2d array with individual elements made
     #  of 3 consecutive characters from each line
 
     account_numbers = []
-    grid = build_grid(File.open(file, "r"))
+    grid = self.build_grid(File.open(file, "r"))
     until grid.empty?
       line_group = grid.slice!(0,4)
-      account_numbers << match_account_number(line_group)
+      account_numbers << self.match_account_number(line_group)
     end
     account_numbers
   end
 
   private
 
-  def build_grid(file)
+  def self.build_grid(file)
     grid = []
     file.each do |line|
       line_array = []
@@ -45,7 +45,7 @@ class Ocr
     grid
   end
 
-  def match_account_number(line_group)
+  def self.match_account_number(line_group)
     number_signatures = {
     "     |  |" => "1",
     " _  _||_ " => "2",
@@ -67,6 +67,3 @@ class Ocr
   end
 
 end
-
-ocr = Ocr.new
-ocr.scan_for_account_numbers("accounts.txt")
